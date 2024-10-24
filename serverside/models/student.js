@@ -8,4 +8,4 @@ const studentSchema = new mongoose.Schema({
 //Parameters: (model_name, schema_to_use, collection_name)
 //module.exports is used to allow external access to the model  
 module.exports = mongoose.model('Student', studentSchema,'Students');
-//note capital S in the collection name
+//note capital S in the collection namec
