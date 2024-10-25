@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { StudentService } from './student.service';
+import { StudentService } from './services/student.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 

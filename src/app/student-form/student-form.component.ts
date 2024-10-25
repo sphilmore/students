@@ -3,7 +3,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
-import { StudentService } from '../student.service';
+import { StudentService } from '../services/student.service';
 import {Router} from '@angular/router';
 import {ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
@@ -32,7 +32,7 @@ private student: any
             this.id = paramMap.get('_id');
 
             //request student info based on the id
-            this.myService.getStudent(this.id).subscribe({
+            this.myService.getStudents().subscribe({
                 next: (data => {
                     //read data and assign to private variable student
                     this.student = data;
@@ -58,11 +58,29 @@ private student: any
     let firstName = this.studentForm.get('firstName')?.value ?? "";
     let lastName = this.studentForm.get('lastName')?.value ?? "";
     console.log("You submitted: " + firstName + " " + lastName);
-    if (this.mode == 'Add')
-      this.myService.addStudents(firstName, lastName);
-  if (this.mode == 'Edit')
-      this.myService.updateStudent(this.id, firstName, lastName);
-    this.router.navigate(['/listStudents']);
+    if (this.mode == 'Add') {
+      this.myService.addStudent(firstName, lastName).subscribe(
+        (response) => {
+          console.log('Student added successfully:', response);
+          this.router.navigate(['/listStudents']);
+        },
+        (error) => {
+          console.error('Error adding student:', error);
+          // Handle the error (e.g., show an error message to the user)
+        }
+      );
+    } else if (this.mode === 'Edit') {
+      this.myService.updateStudent(this.id, {firstName:firstName, lastName:lastName}).subscribe(
+        (response) => {
+          console.log('Student updated successfully:', response);
+          this.router.navigate(['/listStudents']);
+        },
+        (error) => {
+          console.error('Error updating student:', error);
+         
+        }
+      );
+    }
   }
 }
     

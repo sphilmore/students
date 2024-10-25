@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ListStudentsComponent } from './list-students/list-students.component';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { EditStudentComponent } from './edit-student/edit-student.component';
 
 export const routes: Routes = [
     {
@@ -18,14 +19,11 @@ export const routes: Routes = [
         component: StudentFormComponent
     },
     {
+        path: 'editStudent/:id',
+        component: EditStudentComponent 
+    },
+    {
         path: '**',  //when path cannot be found, keep this at the bottom
         component: NotFoundComponent
-    
-    },
-
-    {
-        path: 'editStudent/:_id', //when students edited 
-        component: StudentFormComponent 
-    },
+    }
 ];
-

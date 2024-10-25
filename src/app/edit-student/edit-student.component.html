@@ -1,0 +1,14 @@
+<div class="edit-student">
+  <h2>Edit Student</h2>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="firstName" type="text" />
+    </div>
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="lastName" type="text" />
+    </div>
+    <button type="submit" [disabled]="!studentForm.valid">Update Student</button>
+  </form>
+</div>
